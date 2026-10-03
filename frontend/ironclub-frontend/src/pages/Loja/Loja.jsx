@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
 import api from "../../services/api";
 
@@ -23,6 +24,10 @@ function Loja() {
             <div>
                 <h1>Loja</h1>
                 <p>Produtos disponíveis no IronClub.</p>
+
+                <Link className="btn btn-primary mb-3" to="/produtos/novo">
+                    Novo Produto
+                </Link>
 
                 <div className="table-responsive">
                     <table className="table table-bordered table-striped table-hover">
