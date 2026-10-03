@@ -1,16 +1,16 @@
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
 
-function Home() {
+function Perfil() {
     return (
         <div className="container">
             <MenuPrincipal />
 
             <div>
-                <h1>IronClub</h1>
-                <p>Bem-vindo ao sistema da academia.</p>
+                <h1>Perfil</h1>
+                <p>Dados do usuário do IronClub.</p>
             </div>
         </div>
     );
 }
 
-export default Home;
+export default Perfil;

@@ -1,16 +1,16 @@
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
 
-function Home() {
+function Treinos() {
     return (
         <div className="container">
             <MenuPrincipal />
 
             <div>
-                <h1>IronClub</h1>
-                <p>Bem-vindo ao sistema da academia.</p>
+                <h1>Treinos</h1>
+                <p>Página de treinos do IronClub</p>
             </div>
         </div>
     );
 }
 
-export default Home;
+export default Treinos;

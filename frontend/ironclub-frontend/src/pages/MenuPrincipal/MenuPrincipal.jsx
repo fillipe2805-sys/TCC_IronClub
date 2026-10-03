@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 function MenuPrincipal() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light p-2 rounded shadow-sm w-100">
-            <a className="navbar-brand" href="/">
+            <Link className="navbar-brand" to="/">
                 IronClub
-            </a>
+            </Link>
 
             <button
                 className="navbar-toggler"
@@ -20,27 +22,27 @@ function MenuPrincipal() {
             <div className="collapse navbar-collapse" id="menuPrincipal">
                 <ul className="navbar-nav me-auto">
                     <li className="nav-item">
-                        <a className="nav-link" href="/">
+                        <Link className="nav-link" to="/">
                             Home
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="nav-item">
-                        <a className="nav-link" href="/treinos">
+                        <Link className="nav-link" to="/treinos">
                             Treinos
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="nav-item">
-                        <a className="nav-link" href="/produtos">
+                        <Link className="nav-link" to="/produtos">
                             Loja
-                        </a>
+                        </Link>
                     </li>
 
                     <li className="nav-item">
-                        <a className="nav-link" href="/perfil">
+                        <Link className="nav-link" to="/perfil">
                             Perfil
-                        </a>
+                        </Link>
                     </li>
                 </ul>
 
