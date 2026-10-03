@@ -1,0 +1,18 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Java / Maven
+target/
+*.class
+
+# Configuração local com senha do banco
+backend/ironclub-backend/src/main/resources/application.properties
+
+# React / Node
+node_modules/
+dist/
+
+# Sistema
+.DS_Store
+Thumbs.db
