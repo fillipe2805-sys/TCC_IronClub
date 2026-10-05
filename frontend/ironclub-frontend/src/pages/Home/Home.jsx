@@ -1,14 +1,15 @@
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
+import PageInfo from "../components/PageInfo";
 
 function Home() {
     return (
         <div className="container">
             <MenuPrincipal />
 
-            <div>
-                <h1>IronClub</h1>
-                <p>Bem-vindo ao sistema da academia.</p>
-            </div>
+            <PageInfo title="Home" />
+
+            <p>Bem-vindo ao sistema da academia.</p>
+        
         </div>
     );
 }

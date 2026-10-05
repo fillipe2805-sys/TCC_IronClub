@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
 import api from "../../services/api";
+import PageInfo from "../components/PageInfo";
 
 function Loja() {
 
@@ -21,10 +22,11 @@ function Loja() {
         <div className="container">
             <MenuPrincipal />
 
-            <div>
-                <h1>Loja</h1>
-                <p>Produtos disponíveis no IronClub.</p>
+            <PageInfo title="Loja" />
 
+            <p>Produtos disponíveis no IronClub.</p>
+            
+            <div>
                 <Link className="btn btn-primary mb-3" to="/produtos/novo">
                     Novo Produto
                 </Link>

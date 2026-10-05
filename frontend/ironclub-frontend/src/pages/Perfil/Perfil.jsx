@@ -1,3 +1,4 @@
+import PageInfo from "../components/PageInfo";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
 
 function Perfil() {
@@ -5,10 +6,10 @@ function Perfil() {
         <div className="container">
             <MenuPrincipal />
 
-            <div>
-                <h1>Perfil</h1>
-                <p>Dados do usuário do IronClub.</p>
-            </div>
+            <PageInfo title="Perfil" />
+            
+            <p>Dados do usuário do IronClub.</p>
+            
         </div>
     );
 }

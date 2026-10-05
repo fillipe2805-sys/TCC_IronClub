@@ -1,14 +1,15 @@
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
+import PageInfo from "../components/PageInfo";
 
 function Treinos() {
     return (
         <div className="container">
             <MenuPrincipal />
 
-            <div>
-                <h1>Treinos</h1>
-                <p>Página de treinos do IronClub</p>
-            </div>
+            <PageInfo title="Treinos" />
+
+            <p>Página de treinos do IronClub</p>
+            
         </div>
     );
 }

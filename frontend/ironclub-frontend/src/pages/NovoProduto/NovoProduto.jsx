@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
 import api from "../../services/api";
+import PageInfo from "../components/PageInfo";
 
 function NovoProduto() {
 
@@ -44,7 +45,8 @@ function NovoProduto() {
         <div className="container">
             <MenuPrincipal />
 
-            <h1>Novo Produto</h1>
+            <PageInfo title="Novo Produto" />
+
             <form className="container-fluid p-4" onSubmit={enviarProduto}>
                 <div className="mb-3">
                     <label className="form-label">Nome:</label>
