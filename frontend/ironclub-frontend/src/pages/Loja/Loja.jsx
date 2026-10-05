@@ -35,12 +35,12 @@ function Loja() {
 
     useEffect(() => {
         api.get("produtos")
-        .then((response) => {
-            setProdutos(response.data);
-        })
-        .catch((error) => {
-            console.error("Erro ao buscar produto:", error);
-        });
+            .then((response) => {
+                setProdutos(response.data);
+            })
+            .catch((error) => {
+                console.error("Erro ao buscar produto:", error);
+            });
     }, []);
 
     return (
@@ -75,7 +75,22 @@ function Loja() {
                                     <td>{produto.categoria}</td>
                                     <td>{produto.preco.toFixed(2)}</td>
                                     <td>{produto.estoque}</td>
-                                    <td> 
+                                    <td>
+                                        <button
+                                            className="btn btn-danger btn-sm"
+                                            onClick={() => openModal(produto.idProduto)}
+                                        >
+                                            Excluir
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <Link
+                                            className="btn btn-warning btn-sm me-2"
+                                            to={`/produtos/${produto.idProduto}/editar`}
+                                        >
+                                            Editar
+                                        </Link>
+
                                         <button
                                             className="btn btn-danger btn-sm"
                                             onClick={() => openModal(produto.idProduto)}
@@ -90,7 +105,7 @@ function Loja() {
                 </div>
             </div>
 
-            <Modal 
+            <Modal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 onConfirm={deleteProduto}

@@ -4,6 +4,7 @@ import Treinos from "../pages/Treinos/Treinos";
 import Loja from "../pages/Loja/Loja";
 import Perfil from "../pages/Perfil/Perfil";
 import NovoProduto from "../pages/NovoProduto/NovoProduto";
+import EditarProduto from "../pages/EditarProduto/EditarProduto";
 
 function AppRoutes() {
     return (
@@ -14,6 +15,7 @@ function AppRoutes() {
                 <Route path="/produtos" element={<Loja />} />
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/produtos/novo" element={<NovoProduto />} />
+                <Route path="/produtos/:id/editar"element={<EditarProduto />} />
             </Routes>
         </BrowserRouter>
     );
