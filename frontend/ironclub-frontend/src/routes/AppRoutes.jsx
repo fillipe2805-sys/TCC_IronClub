@@ -8,6 +8,7 @@ import EditarProduto from "../pages/EditarProduto/EditarProduto";
 import Cadastro from "../pages/Cadastro/Cadastro";
 import Login from "../pages/Login/Login";
 import RotaProtegida from "../pages/components/RotaProtegida";
+import NovoTreino from "../pages/NovoTreino/NovoTreino";
 
 function AppRoutes() {
     return (
@@ -63,6 +64,14 @@ function AppRoutes() {
                     element={
                         <RotaProtegida>
                             <EditarProduto />
+                        </RotaProtegida>
+                    }
+                />
+                <Route
+                    path="/treinos/novo"
+                    element={
+                        <RotaProtegida>
+                            <NovoTreino />
                         </RotaProtegida>
                     }
                 />
