@@ -7,17 +7,66 @@ import NovoProduto from "../pages/NovoProduto/NovoProduto";
 import EditarProduto from "../pages/EditarProduto/EditarProduto";
 import Cadastro from "../pages/Cadastro/Cadastro";
 import Login from "../pages/Login/Login";
+import RotaProtegida from "../pages/components/RotaProtegida";
 
 function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="" element={<Home />} />
-                <Route path="/treinos" element={<Treinos />} />
-                <Route path="/produtos" element={<Loja />} />
-                <Route path="/perfil" element={<Perfil />} />
-                <Route path="/produtos/novo" element={<NovoProduto />} />
-                <Route path="/produtos/:id/editar"element={<EditarProduto />} />
+                <Route
+                    path="/"
+                    element={
+                        <RotaProtegida>
+                            <Home />
+                        </RotaProtegida>
+                    }
+                />
+
+                <Route
+                    path="/treinos"
+                    element={
+                        <RotaProtegida>
+                            <Treinos />
+                        </RotaProtegida>
+                    }
+                />
+
+                <Route
+                    path="/produtos"
+                    element={
+                        <RotaProtegida>
+                            <Loja />
+                        </RotaProtegida>
+                    }
+                />
+
+                <Route
+                    path="/perfil"
+                    element={
+                        <RotaProtegida>
+                            <Perfil />
+                        </RotaProtegida>
+                    }
+                />
+
+                <Route
+                    path="/produtos/novo"
+                    element={
+                        <RotaProtegida>
+                            <NovoProduto />
+                        </RotaProtegida>
+                    }
+                />
+
+                <Route
+                    path="/produtos/:id/editar"
+                    element={
+                        <RotaProtegida>
+                            <EditarProduto />
+                        </RotaProtegida>
+                    }
+                />
+
                 <Route path="/cadastro" element={<Cadastro />} />
                 <Route path="/login" element={<Login />} />
             </Routes>
