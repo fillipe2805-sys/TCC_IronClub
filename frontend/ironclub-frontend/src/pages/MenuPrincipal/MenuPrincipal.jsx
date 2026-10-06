@@ -1,6 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function MenuPrincipal() {
+
+    const navigate = useNavigate();
+
+    const logout = () => {
+        localStorage.removeItem("usuario");
+        navigate("/login");
+    };
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light p-2 rounded shadow-sm w-100">
             <Link className="navbar-brand" to="/">
@@ -46,7 +54,7 @@ function MenuPrincipal() {
                     </li>
                 </ul>
 
-                <button type="button" className="btn btn-primary">
+                <button type="button" className="btn btn-primary" onClick={logout}>
                     Logout
                 </button>
             </div>
