@@ -6,19 +6,23 @@ import api from "../../services/api";
 
 function Treinos() {
 
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuario"));
+    const { idUsuario } = JSON.parse(localStorage.getItem("usuario"));
 
     const [treinos, setTreinos] = useState([]);
+    const [carregando, setCarregando] = useState(true);
+    const [erro, setErro] = useState("");
 
     useEffect(() => {
-        api.get(`/treinos/usuario/${usuarioLogado.idUsuario}`)
+        api.get(`/treinos/usuario/${idUsuario}`)
             .then((response) => {
                 setTreinos(response.data);
+                setCarregando(false);
             })
-            .catch((error) => {
-                console.error("Erro ao buscar treinos:", error);
+            .catch(() => {
+                setErro("Não foi possível carregar seus treinos. Tente atualizar a página.");
+                setCarregando(false);
             });
-    }, []);
+    }, [idUsuario]);
 
     return (
         <div className="container">
@@ -30,7 +34,11 @@ function Treinos() {
                 Novo Treino
             </Link>
 
-            {treinos.length > 0 ? (
+            {carregando ? (
+                <p role="status">Carregando treinos...</p>
+            ) : erro ? (
+                <div className="alert alert-danger" role="alert">{erro}</div>
+            ) : treinos.length > 0 ? (
                 <div className="mt-4">
                     {treinos.map((treino) => (
                         <div
@@ -46,6 +54,9 @@ function Treinos() {
                                     <strong>Grupo muscular:</strong>{" "}
                                     {treino.grupoMuscular}
                                 </p>
+                                <Link className="btn btn-outline-primary" to={`/treinos/${treino.idTreino}`}>
+                                    Ver Treino
+                                </Link>
                             </div>
                         </div>
                     ))}

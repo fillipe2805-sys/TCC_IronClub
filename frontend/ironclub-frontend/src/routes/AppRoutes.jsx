@@ -9,6 +9,7 @@ import Cadastro from "../pages/Cadastro/Cadastro";
 import Login from "../pages/Login/Login";
 import RotaProtegida from "../pages/components/RotaProtegida";
 import NovoTreino from "../pages/NovoTreino/NovoTreino";
+import DetalhesTreino from "../pages/DetalhesTreino/DetalhesTreino";
 
 function AppRoutes() {
     return (
@@ -28,6 +29,15 @@ function AppRoutes() {
                     element={
                         <RotaProtegida>
                             <Treinos />
+                        </RotaProtegida>
+                    }
+                />
+
+                <Route
+                    path="/treinos/:id"
+                    element={
+                        <RotaProtegida>
+                            <DetalhesTreino />
                         </RotaProtegida>
                     }
                 />

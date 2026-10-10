@@ -42,7 +42,7 @@ CREATE TABLE Treino_Exercicio (
 	id_exercicio INT NOT NULL,
 	series INT NOT NULL,
 	repeticoes INT NOT NULL,
-	descanso INT NOT NULL,
+	descanso INT NULL,
 
 	FOREIGN KEY (id_treino) REFERENCES Treino(id_treino),
 	FOREIGN KEY (id_exercicio) REFERENCES Exercicio(id_exercicio)

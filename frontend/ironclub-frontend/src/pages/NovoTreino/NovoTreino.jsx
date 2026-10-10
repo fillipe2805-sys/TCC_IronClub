@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
 import PageInfo from "../components/PageInfo";
 import api from "../../services/api";
@@ -12,6 +12,8 @@ function NovoTreino() {
         nome: "",
         grupoMuscular: ""
     });
+    const [salvando, setSalvando] = useState(false);
+    const [erro, setErro] = useState("");
 
     const navigate = useNavigate();
 
@@ -26,19 +28,29 @@ function NovoTreino() {
 
     const criarTreino = async (e) => {
         e.preventDefault();
+        if (salvando) return;
 
+        const nome = treino.nome.trim();
+        const grupoMuscular = treino.grupoMuscular.trim();
+        if (!nome || !grupoMuscular) {
+            setErro("Informe o nome e o grupo muscular do treino.");
+            return;
+        }
+
+        setErro("");
+        setSalvando(true);
         try {
-            await api.post("/treinos", {
+            const response = await api.post("/treinos", {
                 idUsuario: usuarioLogado.idUsuario,
-                nome: treino.nome,
-                grupoMuscular: treino.grupoMuscular
+                nome,
+                grupoMuscular
             });
 
-            alert("Treino criado com sucesso!");
-            navigate("/treinos");
-        } catch (error) {
-            console.error("Erro ao criar treino:", error);
+            navigate(`/treinos/${response.data.idTreino}`);
+        } catch {
+            setErro("Não foi possível criar o treino. Tente novamente.");
         }
+        setSalvando(false);
     };
 
     return (
@@ -46,35 +58,44 @@ function NovoTreino() {
             <MenuPrincipal />
 
             <PageInfo title="Novo Treino" />
+            <Link className="btn btn-outline-secondary" to="/treinos">Voltar para Treinos</Link>
+            <p className="mt-3">Depois de criar o treino, adicione pelo menos um exercício para completá-lo.</p>
+            {erro && <div className="alert alert-danger mt-3" role="alert">{erro}</div>}
 
             <form className="mt-4" onSubmit={criarTreino}>
-                <div className="mb-3">
-                    <label className="form-label">Nome do treino</label>
-                    <input
-                        type="text"
-                        name="nome"
-                        className="form-control"
-                        value={treino.nome}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
+                <fieldset disabled={salvando}>
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="nomeTreino">Nome do treino</label>
+                        <input
+                            id="nomeTreino"
+                            type="text"
+                            name="nome"
+                            className="form-control"
+                            value={treino.nome}
+                            onChange={handleChange}
+                            maxLength={100}
+                            required
+                        />
+                    </div>
 
-                <div className="mb-3">
-                    <label className="form-label">Grupo muscular</label>
-                    <input
-                        type="text"
-                        name="grupoMuscular"
-                        className="form-control"
-                        value={treino.grupoMuscular}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
+                    <div className="mb-3">
+                        <label className="form-label" htmlFor="grupoTreino">Grupo muscular</label>
+                        <input
+                            id="grupoTreino"
+                            type="text"
+                            name="grupoMuscular"
+                            className="form-control"
+                            value={treino.grupoMuscular}
+                            onChange={handleChange}
+                            maxLength={100}
+                            required
+                        />
+                    </div>
 
-                <button type="submit" className="btn btn-primary w-100">
-                    Criar Treino
-                </button>
+                    <button type="submit" className="btn btn-primary w-100">
+                        {salvando ? "Criando..." : "Criar Treino"}
+                    </button>
+                </fieldset>
             </form>
         </div>
     );
