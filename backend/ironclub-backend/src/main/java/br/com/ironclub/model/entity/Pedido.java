@@ -27,6 +27,9 @@ public class Pedido {
     @Column(name = "forma_entrega", nullable = false, length = 50)
     private String formaEntrega;
 
+    @Column(name = "forma_pagamento", length = 50)
+    private String formaPagamento;
+
     public Integer getIdPedido() {
         return idPedido;
     }
@@ -57,5 +60,13 @@ public class Pedido {
 
     public void setFormaEntrega(String formaEntrega) {
         this.formaEntrega = formaEntrega;
+    }
+
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaPagamento = formaPagamento;
     }
 }

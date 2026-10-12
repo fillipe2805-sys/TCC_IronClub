@@ -7,9 +7,12 @@ import NovoProduto from "../pages/NovoProduto/NovoProduto";
 import EditarProduto from "../pages/EditarProduto/EditarProduto";
 import Cadastro from "../pages/Cadastro/Cadastro";
 import Login from "../pages/Login/Login";
-import RotaProtegida from "../pages/components/RotaProtegida";
+import RotaProtegida from "../components/RotaProtegida";
 import NovoTreino from "../pages/NovoTreino/NovoTreino";
 import DetalhesTreino from "../pages/DetalhesTreino/DetalhesTreino";
+import Carrinho from "../pages/Carrinho/Carrinho";
+import HistoricoPedidos from "../pages/HistoricoPedidos/HistoricoPedidos";
+import GerenciarUsuarios from "../pages/GerenciarUsuarios/GerenciarUsuarios";
 
 function AppRoutes() {
     return (
@@ -63,7 +66,7 @@ function AppRoutes() {
                 <Route
                     path="/produtos/novo"
                     element={
-                        <RotaProtegida>
+                        <RotaProtegida tipoPermitido="ADMIN">
                             <NovoProduto />
                         </RotaProtegida>
                     }
@@ -72,7 +75,7 @@ function AppRoutes() {
                 <Route
                     path="/produtos/:id/editar"
                     element={
-                        <RotaProtegida>
+                        <RotaProtegida tipoPermitido="ADMIN">
                             <EditarProduto />
                         </RotaProtegida>
                     }
@@ -82,6 +85,33 @@ function AppRoutes() {
                     element={
                         <RotaProtegida>
                             <NovoTreino />
+                        </RotaProtegida>
+                    }
+                />
+
+                <Route
+                    path="/carrinho"
+                    element={
+                        <RotaProtegida>
+                            <Carrinho />
+                        </RotaProtegida>
+                    }
+                />
+
+                <Route
+                    path="/pedidos"
+                    element={
+                        <RotaProtegida>
+                            <HistoricoPedidos />
+                        </RotaProtegida>
+                    }
+                />
+
+                <Route
+                    path="/usuarios"
+                    element={
+                        <RotaProtegida tipoPermitido="ADMIN">
+                            <GerenciarUsuarios />
                         </RotaProtegida>
                     }
                 />

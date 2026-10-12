@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
-import PageInfo from "../components/PageInfo";
+import PageInfo from "../../components/PageInfo";
 import api from "../../services/api";
 
 function NovoTreino() {

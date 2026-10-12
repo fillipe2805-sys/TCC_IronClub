@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
 import api from "../../services/api";
-import PageInfo from "../components/PageInfo";
+import PageInfo from "../../components/PageInfo";
 
 function NovoProduto() {
 

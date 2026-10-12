@@ -4,6 +4,9 @@ function MenuPrincipal() {
 
     const navigate = useNavigate();
 
+    const usuario = JSON.parse(localStorage.getItem("usuario"));
+    const ehAdmin = usuario?.tipoUsuario === "ADMIN";
+
     const logout = () => {
         localStorage.removeItem("usuario");
         navigate("/login");
@@ -48,10 +51,30 @@ function MenuPrincipal() {
                     </li>
 
                     <li className="nav-item">
+                        <Link className="nav-link" to="/carrinho">
+                            Carrinho
+                        </Link>
+                    </li>
+
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/pedidos">
+                            Meus Pedidos
+                        </Link>
+                    </li>
+
+                    <li className="nav-item">
                         <Link className="nav-link" to="/perfil">
                             Perfil
                         </Link>
                     </li>
+
+                    {ehAdmin && (
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/usuarios">
+                                Gerenciar Usuários
+                            </Link>
+                        </li>
+                    )}
                 </ul>
 
                 <button type="button" className="btn btn-primary" onClick={logout}>

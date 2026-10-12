@@ -22,15 +22,17 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
-    @PostMapping("/finalizar")
+   @PostMapping("/finalizar")
     public ResponseEntity<Pedido> finalizarCompra(
             @RequestParam Integer idUsuario,
             @RequestParam String formaEntrega,
+            @RequestParam String formaPagamento,
             @RequestBody List<ItemPedido> itens) {
 
         Pedido pedido = pedidoService.finalizarCompra(
                 idUsuario,
                 formaEntrega,
+                formaPagamento,
                 itens
         );
 

@@ -1,5 +1,5 @@
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
-import PageInfo from "../components/PageInfo";
+import PageInfo from "../../components/PageInfo";
 
 function Home() {
     return (

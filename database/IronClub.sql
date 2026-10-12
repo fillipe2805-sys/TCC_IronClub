@@ -65,6 +65,7 @@ CREATE TABLE Pedido (
 	id_usuario INT NOT NULL,
 	data_pedido DATETIME2 NOT NULL DEFAULT SYSDATETIME(),
 	forma_entrega VARCHAR(50) NOT NULL,
+	forma_pagamento VARCHAR(50) NULL,
 
 	FOREIGN KEY (id_usuario) REFERENCES Usuario(id_usuario)
 );

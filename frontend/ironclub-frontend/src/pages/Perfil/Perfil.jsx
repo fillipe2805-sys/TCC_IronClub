@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import PageInfo from "../components/PageInfo";
+import PageInfo from "../../components/PageInfo";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
 import api from "../../services/api";
 
