@@ -11,8 +11,13 @@ function Loja() {
     const ehAdmin = usuario.tipoUsuario === "ADMIN";
 
     const [produtos, setProdutos] = useState([]);
+    const [pesquisa, setPesquisa] = useState("")
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [idProdutoAExcluir, setIdProdutoAExcluir] = useState(null);
+
+    const produtosFiltrados = produtos.filter((produto) =>
+        produto.nome.toLowerCase().includes(pesquisa.trim().toLowerCase())
+    );
 
     const openModal = (idProduto) => {
         setIdProdutoAExcluir(idProduto);
@@ -96,6 +101,21 @@ function Loja() {
                     </Link>
                 )}
 
+                <div className="mb-3">
+                    <label className="form-label" htmlFor="pesquisaProduto">
+                        Pesquisar suplemento
+                    </label>
+
+                    <input
+                        id="pesquisaProduto"
+                        type="text"
+                        className="form-control"
+                        placeholder="Digite o nome do suplemento..."
+                        value={pesquisa}
+                        onChange={(e) => setPesquisa(e.target.value)}
+                    />
+                </div>
+
                 <div className="table-responsive">
                     <table className="table table-bordered table-striped table-hover">
                         <thead className="table-dark">
@@ -109,7 +129,7 @@ function Loja() {
                         </thead>
 
                         <tbody>
-                            {produtos.map((produto) => (
+                            {produtosFiltrados.map((produto) => (
                                 <tr key={produto.idProduto}>
                                     <td>{produto.nome}</td>
                                     <td>{produto.categoria}</td>
@@ -143,6 +163,16 @@ function Loja() {
                                     </td>
                                 </tr>
                             ))}
+
+                            {produtosFiltrados.length === 0 && (
+                                <tr>
+                                    <td colSpan="5" className="text-center">
+                                        {pesquisa.trim()
+                                            ? "Nenhum suplemento encontrado."
+                                            : "Nenhum suplemento disponível."}
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>
