@@ -1,0 +1,92 @@
+.menu {
+    width: 100%;
+    min-height: 58px;
+    padding: 9px 18px;
+    border-radius: 10px;
+    background: #17171b;
+    box-shadow: 0 3px 10px #17171b12;
+}
+
+.marca {
+    margin-right: 25px;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -.06em;
+}
+
+.marca:hover {
+    color: #fff;
+}
+
+.marca span {
+    color: #f04458;
+}
+
+.link {
+    padding: 8px 11px !important;
+    margin-right: 2px;
+    color: #babac3 !important;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 550;
+    transition: color .15s, background .15s;
+}
+
+.link:hover {
+    color: #fff !important;
+    background: #29292e;
+}
+
+.ativo {
+    color: #fff !important;
+    background: #3d232a;
+    box-shadow: inset 0 -2px #eb4055;
+}
+
+.logout {
+    padding: 8px 12px;
+    border: 1px solid #49494f;
+    border-radius: 6px;
+    background: transparent;
+    color: #e8e8ec;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.logout:hover {
+    background: #cf2035;
+    border-color: #cf2035;
+    color: #fff;
+}
+
+.menu :global(.navbar-toggler) {
+    border-color: #45454c;
+    padding: 6px 9px;
+}
+
+.menu :global(.navbar-toggler:focus) {
+    box-shadow: 0 0 0 2px #d84a5d66;
+}
+
+@media (max-width: 1199px) {
+    .menu {
+        padding: 8px 14px;
+    }
+    .marca {
+        margin-right: 0;
+    }
+    .menu :global(.navbar-collapse) {
+        padding-top: 9px;
+    }
+    .link {
+        padding: 10px 12px !important;
+        margin: 2px 0;
+    }
+    .logout {
+        width: 100%;
+        padding: 11px;
+        margin-top: 8px;
+    }
+}

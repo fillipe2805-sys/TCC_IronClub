@@ -1,0 +1,203 @@
+.pagina {
+    padding-top: 16px;
+    padding-bottom: 28px;
+}
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin: 22px 0 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--iron-border);
+}
+
+.destaque {
+    display: block;
+    margin-bottom: 4px;
+    color: #b92134;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .16em;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    font-size: 27px;
+}
+
+.cabecalho p {
+    margin: 5px 0 0;
+    color: var(--iron-muted);
+    font-size: 13px;
+}
+
+.botaoNovo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 14px;
+    border-radius: 7px;
+    background: #cf2035;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 650;
+    white-space: nowrap;
+}
+
+.botaoNovo:hover {
+    background: #b51a2e;
+    color: #fff;
+}
+
+.tituloSecao {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.tituloSecao h2 {
+    margin: 0;
+    font-size: 17px;
+}
+
+.tituloSecao p {
+    margin: 0;
+    font-size: 12px;
+    color: var(--iron-muted);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.conteudo {
+    min-width: 0;
+}
+
+.card {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 30px minmax(0, 1fr);
+    gap: 4px 12px;
+    padding: 16px;
+    border: 1px solid var(--iron-border);
+    border-radius: 9px;
+    background: #fff;
+    transition: border-color .15s;
+}
+
+.card:hover {
+    border-color: #d5919d;
+}
+
+.icone {
+    grid-row: 1 / span 3;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    color: #bb1d31;
+    background: #fff0f3;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 750;
+}
+
+.card h3 {
+    grid-column: 2;
+    margin: 0;
+    font-size: 16px;
+    overflow-wrap: anywhere;
+}
+
+.grupoValor {
+    grid-column: 2;
+    margin: 0;
+    color: #3d3d46;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.grupoValor span {
+    color: var(--iron-muted);
+    font-size: 11px;
+}
+
+.botaoVer {
+    grid-column: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: fit-content;
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 650;
+    color: #ba1b2f;
+    text-decoration: none;
+}
+
+.botaoVer:hover {
+    color: #951324;
+    text-decoration: underline;
+}
+
+.vazio {
+    padding: 24px;
+    border: 1px dashed #d3d4dc;
+    border-radius: 9px;
+    background: #fff;
+}
+
+.vazio h3 {
+    font-size: 17px;
+}
+
+.vazio p {
+    color: var(--iron-muted);
+    font-size: 13px;
+}
+
+@media (max-width: 991px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .pagina {
+        padding-top: 12px;
+    }
+    .cabecalho {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+    }
+    .cabecalho h1 {
+        font-size: 24px;
+    }
+    .tituloSecao {
+        display: block;
+    }
+    .tituloSecao p {
+        margin-top: 3px;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .botaoVer {
+        min-height: 30px;
+    }
+    .botaoNovo {
+        min-height: 42px;
+    }
+}

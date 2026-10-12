@@ -1,3 +1,4 @@
+import styles from "../../styles/Layout.module.css";
 import { useEffect, useState } from "react";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
 import PageInfo from "../../components/PageInfo";
@@ -59,15 +60,16 @@ function HistoricoPedidos() {
     };
 
     return (
-        <div className="container">
+        <div className={`container ${styles.pagina}`}>
             <MenuPrincipal />
 
-            <PageInfo title="Histórico de Pedidos" />
+            <PageInfo title="Histórico de Pedidos" descricao="Consulte suas compras e os itens de cada pedido." />
 
             {pedidos.length === 0 ? (
-                <p>Nenhum pedido encontrado.</p>
+                <p className={styles.vazio}>Nenhum pedido encontrado.</p>
             ) : (
-                <div className="table-responsive">
+                <div>
+                    <div className={`table-responsive ${styles.tabela}`}>
                     <table className="table table-bordered table-striped">
                         <thead className="table-dark">
                             <tr>
@@ -96,12 +98,13 @@ function HistoricoPedidos() {
                             ))}
                         </tbody>
                     </table>
+                    </div>
                     {pedidoSelecionado !== null && (
-                        <div className="mt-4">
+                        <div className={styles.detalhesPedido}>
 
                             <h3>Itens do Pedido #{pedidoSelecionado}</h3>
 
-                            <div className="table-responsive">
+                            <div className={`table-responsive ${styles.tabela}`}>
                                 <table className="table table-bordered table-striped">
                                     <thead className="table-dark">
                                         <tr>
@@ -116,13 +119,13 @@ function HistoricoPedidos() {
                                             <tr key={item.idItemPedido}>
                                                 <td>{buscarNomeProduto(item.idProduto)}</td>
                                                 <td>{item.quantidade}</td>
-                                                <td>R$ {Number(item.valorUnitario).toFixed(2)}</td>
+                                                <td>R$ {Number(item.valorUnitario).toFixed(2).replace(".", ",")}</td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
                                 <p className="mt-3">
-                                    <strong>Total do pedido: R$ {totalPedido.toFixed(2)}</strong>
+                                    <strong>Total do pedido: R$ {totalPedido.toFixed(2).replace(".", ",")}</strong>
                                 </p>
                             </div>
                         </div>

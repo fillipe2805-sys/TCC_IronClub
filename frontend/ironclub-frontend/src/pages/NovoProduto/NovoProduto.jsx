@@ -1,3 +1,4 @@
+import styles from "../../styles/Layout.module.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
@@ -42,16 +43,17 @@ function NovoProduto() {
     };
 
     return (
-        <div className="container">
+        <div className={`container ${styles.pagina}`}>
             <MenuPrincipal />
 
-            <PageInfo title="Novo Produto" />
+            <PageInfo title="Novo Produto" descricao="Cadastre os dados do suplemento e o estoque disponível." />
 
-            <form className="container-fluid p-4" onSubmit={enviarProduto}>
+            <form className={styles.formulario} onSubmit={enviarProduto}>
                 <div className="mb-3">
-                    <label className="form-label">Nome:</label>
+                    <label className="form-label" htmlFor="novoproduto-nome">Nome</label>
                     <input
                         type="text"
+                        id="novoproduto-nome"
                         name="nome"
                         value={produto.nome}
                         onChange={handleChange}
@@ -61,9 +63,10 @@ function NovoProduto() {
                 </div>
 
                 <div className="mb-3">
-                    <label className="form-label">Categoria:</label>
+                    <label className="form-label" htmlFor="novoproduto-categoria">Categoria</label>
                     <input
                         type="text"
+                        id="novoproduto-categoria"
                         name="categoria"
                         value={produto.categoria}
                         onChange={handleChange}
@@ -73,10 +76,11 @@ function NovoProduto() {
                 </div>
 
                 <div className="mb-3">
-                    <label className="form-label">Preço:</label>
+                    <label className="form-label" htmlFor="novoproduto-preco">Preço</label>
                     <input
                         type="number"
                         step="0.01"
+                        id="novoproduto-preco"
                         name="preco"
                         value={produto.preco}
                         onChange={handleChange}
@@ -86,9 +90,10 @@ function NovoProduto() {
                 </div>
 
                 <div className="mb-3">
-                    <label className="form-label">Estoque:</label>
+                    <label className="form-label" htmlFor="novoproduto-estoque">Estoque</label>
                     <input
                         type="number"
+                        id="novoproduto-estoque"
                         name="estoque"
                         value={produto.estoque}
                         onChange={handleChange}

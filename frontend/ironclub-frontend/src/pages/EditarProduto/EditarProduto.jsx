@@ -1,3 +1,4 @@
+import styles from "../../styles/Layout.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
@@ -24,7 +25,7 @@ function EditarProduto() {
             .catch((error) => {
                 console.error("Erro ao buscar produto:", error);
             });
-    }, { id });
+    }, [id]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -53,16 +54,17 @@ function EditarProduto() {
     }
 
     return (
-        <div className="container">
+        <div className={`container ${styles.pagina}`}>
             <MenuPrincipal />
 
-            <PageInfo title="Editar Produto" />
+            <PageInfo title="Editar Produto" descricao="Atualize as informações do suplemento." />
 
-            <form className="container-fluid p-4" onSubmit={atualizarProduto}>
+            <form className={styles.formulario} onSubmit={atualizarProduto}>
                 <div className="mb-3">
-                    <label className="form-label">Nome</label>
+                    <label className="form-label" htmlFor="editarproduto-nome">Nome</label>
                     <input
                         type="text"
+                        id="editarproduto-nome"
                         name="nome"
                         className="form-control"
                         value={produto.nome}
@@ -72,9 +74,10 @@ function EditarProduto() {
                 </div>
 
                 <div className="mb-3">
-                    <label className="form-label">Categoria</label>
+                    <label className="form-label" htmlFor="editarproduto-categoria">Categoria</label>
                     <input
                         type="text"
+                        id="editarproduto-categoria"
                         name="categoria"
                         className="form-control"
                         value={produto.categoria}
@@ -84,10 +87,11 @@ function EditarProduto() {
                 </div>
 
                 <div className="mb-3">
-                    <label className="form-label">Preço</label>
+                    <label className="form-label" htmlFor="editarproduto-preco">Preço</label>
                     <input
                         type="number"
                         step="0.01"
+                        id="editarproduto-preco"
                         name="preco"
                         className="form-control"
                         value={produto.preco}
@@ -97,9 +101,10 @@ function EditarProduto() {
                 </div>
 
                 <div className="mb-3">
-                    <label className="form-label">Estoque</label>
+                    <label className="form-label" htmlFor="editarproduto-estoque">Estoque</label>
                     <input
                         type="number"
+                        id="editarproduto-estoque"
                         name="estoque"
                         className="form-control"
                         value={produto.estoque}

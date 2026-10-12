@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
-import PageInfo from "../../components/PageInfo";
 import api from "../../services/api";
+import styles from "./Treinos.module.css";
 
 function Treinos() {
 
@@ -25,48 +25,82 @@ function Treinos() {
     }, [idUsuario]);
 
     return (
-        <div className="container">
+        <div className={`container ${styles.pagina}`}>
             <MenuPrincipal />
 
-            <PageInfo title="Treinos" />
+            <main>
+                <section className={styles.cabecalho}>
+                    <div>
+                        <span className={styles.destaque}>IRONCLUB</span>
 
-            <Link className="btn btn-primary mb-3" to="/treinos/novo">
-                Novo Treino
-            </Link>
+                        <h1>Meus Treinos</h1>
 
-            {carregando ? (
-                <p role="status">Carregando treinos...</p>
-            ) : erro ? (
-                <div className="alert alert-danger" role="alert">{erro}</div>
-            ) : treinos.length > 0 ? (
-                <div className="mt-4">
-                    {treinos.map((treino) => (
-                        <div
-                            className="card mb-3"
-                            key={treino.idTreino}
-                        >
-                            <div className="card-body">
-                                <h5 className="card-title">
-                                    {treino.nome}
-                                </h5>
+                        <p>
+                            Organize seus treinos e consulte seus exercícios
+                            sempre que precisar.
+                        </p>
+                    </div>
 
-                                <p className="card-text">
-                                    <strong>Grupo muscular:</strong>{" "}
-                                    {treino.grupoMuscular}
-                                </p>
-                                <Link className="btn btn-outline-primary" to={`/treinos/${treino.idTreino}`}>
-                                    Ver Treino
-                                </Link>
-                            </div>
+                    <Link className={styles.botaoNovo} to="/treinos/novo">
+                        + Novo Treino
+                    </Link>
+                </section>
+
+                <section className={styles.conteudo}>
+                    <div className={styles.tituloSecao}>
+                        <h2>Treinos cadastrados</h2>
+                        <p>Selecione um treino para visualizar seus detalhes.</p>
+                    </div>
+
+                    {carregando ? (
+                        <p>Carregando treinos...</p>
+                    ) : erro ? (
+                        <div className="alert alert-danger">
+                            {erro}
                         </div>
-                    ))}
-                </div>
-            ) : (
-                <p className="mt-4">
-                    Nenhum treino cadastrado.
-                </p>
-            )}
+                    ) : treinos.length > 0 ? (
+                        <div className={styles.grid}>
+                            {treinos.map((treino) => (
+                                <div
+                                    className={styles.card}
+                                    key={treino.idTreino}
+                                >
+                                    <div className={styles.icone}>
+                                        T
+                                    </div>
 
+                                    <h3>{treino.nome}</h3>
+
+                                    <p className={styles.grupoValor}>
+                                        <span>Grupo muscular: </span>
+                                        {treino.grupoMuscular}
+                                    </p>
+
+                                    <Link
+                                        className={styles.botaoVer}
+                                        to={`/treinos/${treino.idTreino}`}
+                                    >
+                                        Ver Treino
+                                        <span>→</span>
+                                    </Link>
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className={styles.vazio}>
+                            <h3>Nenhum treino cadastrado</h3>
+
+                            <p>
+                                Comece criando seu primeiro treino.
+                            </p>
+
+                            <Link className={styles.botaoNovo} to="/treinos/novo">
+                                Criar Treino
+                            </Link>
+                        </div>
+                    )}
+                </section>
+            </main>
         </div>
     );
 }

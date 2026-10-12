@@ -1,3 +1,4 @@
+import styles from "../../styles/Layout.module.css";
 import { useEffect, useState } from "react";
 import PageInfo from "../../components/PageInfo";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
@@ -17,7 +18,7 @@ function Perfil() {
             .catch((error) => {
                 console.error("Erro ao buscar perfil:", error);
             });
-    }, []);
+    }, [usuarioLogado.idUsuario]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -55,19 +56,20 @@ function Perfil() {
     };
 
     return (
-        <div className="container">
+        <div className={`container ${styles.pagina}`}>
             <MenuPrincipal />
 
-            <PageInfo title="Perfil" />
+            <PageInfo title="Perfil" descricao="Seus dados pessoais e objetivo físico." />
 
             {usuario ? (
-                <form className="mt-4" onSubmit={atualizarPerfil}>
+                <form className={styles.formulario} onSubmit={atualizarPerfil}>
 
                     <div className="mb-3">
-                        <label className="form-label">Nome</label>
+                        <label className="form-label" htmlFor="perfil-nome">Nome</label>
                         <input
                             type="text"
-                            name="nome"
+                            id="perfil-nome"
+                        name="nome"
                             className="form-control"
                             value={usuario.nome}
                             onChange={handleChange}
@@ -76,10 +78,11 @@ function Perfil() {
                     </div>
 
                     <div className="mb-3">
-                        <label className="form-label">E-mail</label>
+                        <label className="form-label" htmlFor="perfil-email">E-mail</label>
                         <input
                             type="email"
-                            name="email"
+                            id="perfil-email"
+                        name="email"
                             className="form-control"
                             value={usuario.email}
                             onChange={handleChange}
@@ -88,10 +91,11 @@ function Perfil() {
                     </div>
 
                     <div className="mb-3">
-                        <label className="form-label">Objetivo físico</label>
+                        <label className="form-label" htmlFor="perfil-objetivoFisico">Objetivo físico</label>
                         <input
                             type="text"
-                            name="objetivoFisico"
+                            id="perfil-objetivoFisico"
+                        name="objetivoFisico"
                             className="form-control"
                             value={usuario.objetivoFisico || ""}
                             onChange={handleChange}
@@ -99,10 +103,11 @@ function Perfil() {
                     </div>
 
                     <div className="mb-3">
-                        <label className="form-label">Tipo de usuário</label>
+                        <label className="form-label" htmlFor="perfil-tipo">Tipo de usuário</label>
                         <input
                             type="text"
                             className="form-control"
+                            id="perfil-tipo"
                             value={usuario.tipoUsuario}
                             disabled
                         />

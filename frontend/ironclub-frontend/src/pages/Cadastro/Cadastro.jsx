@@ -1,3 +1,4 @@
+import styles from "../../styles/Auth.module.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../services/api";
@@ -40,51 +41,65 @@ function Cadastro() {
     };
 
     return (
-        <div className="container mt-4">
-            <h1>Cadastro</h1>
-
-            <form className="mt-4" onSubmit={CadastrarUsuario}>
-                <div className="mb-3">
-                    <label className="form-label">Nome</label>
-                    <input
-                        type="text"
-                        name="nome"
-                        className="form-control"
-                        value={usuario.nome}
-                        onChange={handleChange}
-                        required
-                    />
+        <main className={styles.pagina}>
+            <Link className={styles.marca} to="/">Iron<span>Club</span></Link>
+            <div className={styles.painel}>
+                <div className={styles.apresentacao}>
+                    <span>SUA ACADEMIA, SEU ESPAÇO</span>
+                    <h2>Disciplina hoje.<br />Resultados sempre.</h2>
+                    <p>Organize seus treinos, encontre suplementos e acompanhe seus pedidos em um só lugar.</p>
                 </div>
+                <div className={styles.formulario}>
+                    <h1>Cadastro</h1>
+                    <p>Crie sua conta e comece a organizar seus treinos.</p>
+                    <form onSubmit={CadastrarUsuario}>
+                        <div className="mb-3">
+                            <label className="form-label" htmlFor="cadastro-nome">Nome</label>
+                            <input
+                                type="text"
+                                id="cadastro-nome"
+                                name="nome"
+                                className="form-control"
+                                value={usuario.nome}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                <div className="mb-3">
-                    <label className="form-label">E-mail</label>
-                    <input
-                        type="email"
-                        name="email"
-                        className="form-control"
-                        value={usuario.email}
-                        onChange={handleChange}
-                        required
-                    />
+                        <div className="mb-3">
+                            <label className="form-label" htmlFor="cadastro-email">E-mail</label>
+                            <input
+                                type="email"
+                                id="cadastro-email"
+                                name="email"
+                                className="form-control"
+                                value={usuario.email}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <div className="mb-3">
+                            <label className="form-label" htmlFor="cadastro-senha">Senha</label>
+                            <input
+                                type="password"
+                                id="cadastro-senha"
+                                name="senha"
+                                className="form-control"
+                                value={usuario.senha}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+
+                        <button type="submit" className="btn btn-primary w-100">
+                            Cadastrar
+                        </button>
+                    </form>
+                    <p className={styles.rodape}>Já tem uma conta? <Link to="/login">Entrar</Link></p>
                 </div>
-
-                <div className="mb-3">
-                    <label className="form-label">Senha</label>
-                    <input
-                        type="password"
-                        name="senha"
-                        className="form-control"
-                        value={usuario.senha}
-                        onChange={handleChange}
-                        required
-                    />
-                </div>
-
-                <button type="submit" className="btn btn-primary w-100">
-                    Cadastrar
-                </button>
-            </form>
-        </div>
+            </div>
+        </main>
     );
 }
 

@@ -1,4 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import styles from "./MenuPrincipal.module.css";
 
 function MenuPrincipal() {
 
@@ -7,16 +8,33 @@ function MenuPrincipal() {
     const usuario = JSON.parse(localStorage.getItem("usuario"));
     const ehAdmin = usuario?.tipoUsuario === "ADMIN";
 
+    const links = [
+        { nome: "Home", caminho: "/" },
+        { nome: "Treinos", caminho: "/treinos" },
+        { nome: "Loja", caminho: "/produtos" },
+        { nome: "Carrinho", caminho: "/carrinho" },
+        { nome: "Meus Pedidos", caminho: "/pedidos" },
+        { nome: "Perfil", caminho: "/perfil" }
+    ];
+
+    if (ehAdmin) {
+        links.push({
+            nome: "Gerenciar Usuários",
+            caminho: "/usuarios"
+        });
+    }
+
     const logout = () => {
         localStorage.removeItem("usuario");
         navigate("/login");
     };
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light p-2 rounded shadow-sm w-100">
-            <Link className="navbar-brand" to="/">
-                IronClub
-            </Link>
+        <nav className={`navbar navbar-expand-xl navbar-dark ${styles.menu}`}>
+
+            <NavLink className={`navbar-brand ${styles.marca}`} to="/">
+                Iron<span>Club</span>
+            </NavLink>
 
             <button
                 className="navbar-toggler"
@@ -31,55 +49,31 @@ function MenuPrincipal() {
             </button>
 
             <div className="collapse navbar-collapse" id="menuPrincipal">
+
                 <ul className="navbar-nav me-auto">
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/">
-                            Home
-                        </Link>
-                    </li>
-
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/treinos">
-                            Treinos
-                        </Link>
-                    </li>
-
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/produtos">
-                            Loja
-                        </Link>
-                    </li>
-
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/carrinho">
-                            Carrinho
-                        </Link>
-                    </li>
-
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/pedidos">
-                            Meus Pedidos
-                        </Link>
-                    </li>
-
-                    <li className="nav-item">
-                        <Link className="nav-link" to="/perfil">
-                            Perfil
-                        </Link>
-                    </li>
-
-                    {ehAdmin && (
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/usuarios">
-                                Gerenciar Usuários
-                            </Link>
+                    {links.map((link) => (
+                        <li className="nav-item" key={link.caminho}>
+                            <NavLink
+                                to={link.caminho}
+                                end={link.caminho === "/"}
+                                className={({ isActive }) =>
+                                    `nav-link ${styles.link} ${isActive ? styles.ativo : ""}`
+                                }
+                            >
+                                {link.nome}
+                            </NavLink>
                         </li>
-                    )}
+                    ))}
                 </ul>
 
-                <button type="button" className="btn btn-primary" onClick={logout}>
-                    Logout
+                <button
+                    type="button"
+                    className={styles.logout}
+                    onClick={logout}
+                >
+                    Sair da conta
                 </button>
+
             </div>
         </nav>
     );

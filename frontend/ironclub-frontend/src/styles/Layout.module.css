@@ -1,0 +1,210 @@
+/* Padrão compacto das páginas internas. */
+
+.pagina {
+    padding-top: 16px;
+    padding-bottom: 28px;
+}
+
+.cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 22px 0 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--iron-border);
+}
+
+.cabecalho h1 {
+    margin: 0;
+}
+
+.cabecalho p {
+    margin: 5px 0 0;
+    color: var(--iron-muted);
+    font-size: 13px;
+}
+
+.formulario {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 20px;
+    max-width: 900px;
+    padding: 22px;
+    border: 1px solid var(--iron-border);
+    border-radius: 10px;
+    background: #fff;
+}
+
+.formulario > :global(.mb-3) {
+    margin: 0 !important;
+    min-width: 0;
+}
+
+.formulario > button {
+    grid-column: 1 / -1;
+    width: auto !important;
+    justify-self: start;
+    margin-top: 2px;
+}
+
+.barra {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 14px;
+}
+
+.pesquisa {
+    width: 420px;
+    max-width: 100%;
+}
+
+.pesquisa :global(.form-label) {
+    font-size: 12px;
+}
+
+.tabela {
+    border: 1px solid var(--iron-border);
+    border-radius: 10px;
+    background: #fff;
+    overflow-x: auto;
+}
+
+.tabela :global(.table) {
+    min-width: 550px;
+}
+
+.tabela > p {
+    padding: 12px 14px;
+    margin: 0 !important;
+    border-top: 1px solid var(--iron-border);
+    background: #fafafb;
+}
+
+.acoes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.preco {
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.carrinho {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 18px;
+    align-items: start;
+}
+
+.resumo {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid var(--iron-border);
+    border-top: 3px solid var(--iron-red);
+    border-radius: 10px;
+}
+
+.resumo h3 {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.resumo .total {
+    font-size: 23px;
+    color: var(--iron-dark);
+    letter-spacing: -.04em;
+    margin-bottom: 12px;
+}
+
+.resumo > p {
+    color: var(--iron-muted);
+    font-size: 13px;
+}
+
+.resumo > button {
+    width: 100%;
+}
+
+.quantidade {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    white-space: nowrap;
+}
+
+.quantidade button {
+    min-width: 30px;
+}
+
+.detalhesPedido {
+    margin-top: 18px;
+}
+
+.vazio {
+    padding: 24px;
+    border: 1px dashed #d4d5dc;
+    border-radius: 10px;
+    color: var(--iron-muted);
+    background: #fff;
+}
+
+.tipo {
+    display: inline-block;
+    padding: 4px 9px;
+    border: 1px solid #e2d4d7;
+    border-radius: 5px;
+    background: #fff3f5;
+    color: #ab1c2e;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .035em;
+}
+
+@media (max-width: 991px) {
+    .carrinho {
+        grid-template-columns: 1fr;
+    }
+    .resumo {
+        max-width: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .tabela::after {
+        content: "Deslize para ver todas as colunas";
+        display: block;
+        padding: 8px 10px;
+        border-top: 1px solid var(--iron-border);
+        color: var(--iron-muted);
+        font-size: 11px;
+    }
+
+    .pagina {
+        padding-top: 12px;
+    }
+    .cabecalho {
+        margin: 18px 0 14px;
+    }
+    .formulario {
+        grid-template-columns: 1fr;
+        padding: 16px;
+        gap: 13px;
+    }
+    .barra {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    .pesquisa {
+        width: 100%;
+    }
+    .acoes {
+        flex-wrap: nowrap;
+    }
+}

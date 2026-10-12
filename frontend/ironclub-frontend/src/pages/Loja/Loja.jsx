@@ -1,3 +1,4 @@
+import styles from "../../styles/Layout.module.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
@@ -87,36 +88,35 @@ function Loja() {
     }, []);
 
     return (
-        <div className="container">
+        <div className={`container ${styles.pagina}`}>
             <MenuPrincipal />
 
-            <PageInfo title="Loja" />
-
-            <p>Produtos disponíveis no IronClub.</p>
+            <PageInfo title="Loja" descricao="Suplementos disponíveis na academia." />
 
             <div>
-                {ehAdmin && (
-                    <Link className="btn btn-primary mb-3" to="/produtos/novo">
-                        Novo Produto
-                    </Link>
-                )}
+                <div className={styles.barra}>
+                    <div className={styles.pesquisa}>
+                        <label className="form-label" htmlFor="pesquisaProduto">
+                            Pesquisar suplemento
+                        </label>
 
-                <div className="mb-3">
-                    <label className="form-label" htmlFor="pesquisaProduto">
-                        Pesquisar suplemento
-                    </label>
-
-                    <input
-                        id="pesquisaProduto"
-                        type="text"
-                        className="form-control"
-                        placeholder="Digite o nome do suplemento..."
-                        value={pesquisa}
-                        onChange={(e) => setPesquisa(e.target.value)}
-                    />
+                        <input
+                            id="pesquisaProduto"
+                            type="text"
+                            className="form-control"
+                            placeholder="Digite o nome do suplemento..."
+                            value={pesquisa}
+                            onChange={(e) => setPesquisa(e.target.value)}
+                        />
+                    </div>
+                    {ehAdmin && (
+                        <Link className="btn btn-primary" to="/produtos/novo">
+                            + Novo Produto
+                        </Link>
+                    )}
                 </div>
 
-                <div className="table-responsive">
+                <div className={`table-responsive ${styles.tabela}`}>
                     <table className="table table-bordered table-striped table-hover">
                         <thead className="table-dark">
                             <tr>
@@ -133,33 +133,35 @@ function Loja() {
                                 <tr key={produto.idProduto}>
                                     <td>{produto.nome}</td>
                                     <td>{produto.categoria}</td>
-                                    <td>{produto.preco.toFixed(2)}</td>
+                                    <td className={styles.preco}>R$ {produto.preco.toFixed(2).replace(".", ",")}</td>
                                     <td>{produto.estoque}</td>
                                     <td>
-                                        <button
-                                            className="btn btn-success btn-sm me-2"
-                                            onClick={() => adicionarAoCarrinho(produto)}
-                                            disabled={produto.estoque === 0}
-                                        >
-                                            Adicionar ao Carrinho
-                                        </button>
-                                        {ehAdmin && (
-                                            <Link
-                                                className="btn btn-warning btn-sm me-2"
-                                                to={`/produtos/${produto.idProduto}/editar`}
-                                            >
-                                                Editar
-                                            </Link>
-                                        )}
-
-                                        {ehAdmin && (
+                                        <div className={styles.acoes}>
                                             <button
-                                                className="btn btn-danger btn-sm"
-                                                onClick={() => openModal(produto.idProduto)}
+                                                className="btn btn-success btn-sm"
+                                                onClick={() => adicionarAoCarrinho(produto)}
+                                                disabled={produto.estoque === 0}
                                             >
-                                                Excluir
+                                                Adicionar ao Carrinho
                                             </button>
-                                        )}
+                                            {ehAdmin && (
+                                                <Link
+                                                    className="btn btn-warning btn-sm"
+                                                    to={`/produtos/${produto.idProduto}/editar`}
+                                                >
+                                                    Editar
+                                                </Link>
+                                            )}
+
+                                            {ehAdmin && (
+                                                <button
+                                                    className="btn btn-danger btn-sm"
+                                                    onClick={() => openModal(produto.idProduto)}
+                                                >
+                                                    Excluir
+                                                </button>
+                                            )}
+                                        </div>
                                     </td>
                                 </tr>
                             ))}

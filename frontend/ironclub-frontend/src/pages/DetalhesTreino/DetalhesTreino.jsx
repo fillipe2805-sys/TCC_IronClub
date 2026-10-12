@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
-import PageInfo from "../../components/PageInfo";
 import api from "../../services/api";
+import styles from "./DetalhesTreino.module.css";
 
 const exercicioInicial = { idExercicio: "", series: "", repeticoes: "", descanso: "" };
 
@@ -108,9 +108,21 @@ function DetalhesTreino() {
     }
 
     return (
-        <div className="container pb-4">
+        <div className={`container pb-4 ${styles.pagina}`}>
+
             <MenuPrincipal />
-            <PageInfo title="Detalhes do Treino" />
+
+            <section className={styles.cabecalho}>
+                <span className={styles.destaque}>IRONCLUB</span>
+
+                <h1>Detalhes do Treino</h1>
+
+                <p>
+                    Visualize as informações do seu treino
+                    e organize seus exercícios.
+                </p>
+            </section>
+
             <Link className="btn btn-outline-secondary mb-3" to="/treinos">Voltar para Treinos</Link>
             {mensagem && (
                 <div className="alert alert-danger">
@@ -119,15 +131,15 @@ function DetalhesTreino() {
             )}
             {!mensagem && !treino && <p>Carregando treino...</p>}
             {treino && treino.idTreino === Number(id) && (
-                <div>
-                    <div className="card mb-4">
+                <div className={styles.corpo}>
+                    <div className={`card ${styles.informacoes}`}>
                         <div className="card-body">
                             <h3 className="card-title text-break">{treino.nome}</h3>
                             <p className="text-break"><strong>Grupo muscular:</strong> {treino.grupoMuscular}</p>
                             {!editando ? (
                                 <button className="btn btn-outline-primary" type="button" onClick={editarTreino}>Editar Treino</button>
                             ) : (
-                                <form className="mt-3" onSubmit={salvarTreino}>
+                                <form className={styles.editar} onSubmit={salvarTreino}>
                                     <fieldset disabled={salvando}>
                                         <div className="mb-3">
                                             <label className="form-label" htmlFor="editarNome">Nome do treino</label>
@@ -147,28 +159,32 @@ function DetalhesTreino() {
                         </div>
                     </div>
 
-                    <h3>Exercícios do treino</h3>
-                    {vinculos.length === 0 && <div className="alert alert-warning">Este treino ainda não possui exercícios. Adicione pelo menos um exercício com séries e repetições para completá-lo.</div>}
-                    <div className="row g-3 mb-4">
-                        {vinculos.map((vinculo) => {
-                            const exercicio = exercicios.filter((item) => item.idExercicio === vinculo.idExercicio)[0];
-                            return (
-                                <div className="col-12 col-md-6" key={vinculo.idTreinoExercicio}>
-                                    <div className="card h-100">
-                                        <div className="card-body">
-                                            <h4 className="h5 text-break">{exercicio?.nome || `Exercício #${vinculo.idExercicio}`}</h4>
-                                            {exercicio?.grupoMuscular && <p><strong>Grupo muscular:</strong> {exercicio.grupoMuscular}</p>}
-                                            <p><strong>Séries:</strong> {vinculo.series}</p>
-                                            <p><strong>Repetições:</strong> {vinculo.repeticoes}</p>
-                                            <p><strong>Descanso:</strong> {vinculo.descanso == null ? "Não informado" : `${vinculo.descanso} segundos`}</p>
+                    <section className={styles.lista}>
+                        <h3>Exercícios do treino</h3>
+                        {vinculos.length === 0 && <div className="alert alert-warning">Este treino ainda não possui exercícios. Adicione pelo menos um exercício com séries e repetições para completá-lo.</div>}
+                        <div className="row g-3">
+                            {vinculos.map((vinculo) => {
+                                const exercicio = exercicios.filter((item) => item.idExercicio === vinculo.idExercicio)[0];
+                                return (
+                                    <div className="col-12 col-md-6" key={vinculo.idTreinoExercicio}>
+                                        <div className="card h-100">
+                                            <div className="card-body">
+                                                <h4 className="h5 text-break">{exercicio?.nome || `Exercício #${vinculo.idExercicio}`}</h4>
+                                                {exercicio?.grupoMuscular && <p><strong>Grupo muscular:</strong> {exercicio.grupoMuscular}</p>}
+                                                <div className={styles.medidas}>
+                                                    <p><strong>Séries:</strong> {vinculo.series}</p>
+                                                    <p><strong>Repetições:</strong> {vinculo.repeticoes}</p>
+                                                    <p><strong>Descanso:</strong> {vinculo.descanso == null ? "Não informado" : `${vinculo.descanso} segundos`}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                                );
+                            })}
+                        </div>
+                    </section>
 
-                    <div className="card">
+                    <div className={`card ${styles.adicionar}`}>
                         <div className="card-body">
                             <h3>Adicionar exercício</h3>
                             {exercicios.length === 0 && <p>Nenhum exercício disponível no momento. Tente novamente quando houver exercícios cadastrados.</p>}

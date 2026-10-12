@@ -1,3 +1,4 @@
+import styles from "../../styles/Layout.module.css";
 import { useEffect, useState } from "react";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
 import PageInfo from "../../components/PageInfo";
@@ -18,12 +19,12 @@ function GerenciarUsuarios() {
     }, []);
 
     return (
-        <div className="container">
+        <div className={`container ${styles.pagina}`}>
             <MenuPrincipal />
 
-            <PageInfo title="Gerenciar Usuários" />
+            <PageInfo title="Gerenciar Usuários" descricao="Consulte os usuários cadastrados no IronClub." />
 
-            <div className="table-responsive">
+            <div className={`table-responsive ${styles.tabela}`}>
                 <table className="table table-bordered table-striped">
                     <thead className="table-dark">
                         <tr>
@@ -38,7 +39,7 @@ function GerenciarUsuarios() {
                             <tr key={usuario.idUsuario}>
                                 <td>{usuario.nome}</td>
                                 <td>{usuario.email}</td>
-                                <td>{usuario.tipoUsuario}</td>
+                                <td><span className={styles.tipo}>{usuario.tipoUsuario}</span></td>
                             </tr>
                         ))}
                     </tbody>

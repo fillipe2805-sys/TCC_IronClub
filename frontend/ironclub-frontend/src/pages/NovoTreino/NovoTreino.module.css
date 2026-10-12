@@ -1,0 +1,148 @@
+.pagina {
+    padding-top: 16px;
+    padding-bottom: 28px;
+}
+
+.cabecalho {
+    margin: 22px 0 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--iron-border);
+}
+
+.destaque {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    color: #b92134;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    font-size: 27px;
+}
+
+.cabecalho p {
+    margin: 5px 0 0;
+    color: var(--iron-muted);
+    font-size: 13px;
+}
+
+.formulario {
+    max-width: 900px;
+    padding: 22px;
+    background: #fff;
+    border: 1px solid var(--iron-border);
+    border-radius: 10px;
+}
+
+.conteudo {
+    min-width: 0;
+}
+
+.voltar {
+    display: inline-block;
+    margin-bottom: 14px;
+    font-size: 12px;
+    color: #b91b2f;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.voltar:hover {
+    text-decoration: underline;
+}
+
+.topoFormulario h2 {
+    margin-bottom: 4px;
+    font-size: 18px;
+}
+
+.topoFormulario p {
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: var(--iron-muted);
+}
+
+.formulario fieldset {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px 20px;
+}
+
+.campo {
+    min-width: 0;
+}
+
+.campo label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #42434c;
+}
+
+.campo input {
+    width: 100%;
+    min-height: 38px;
+    padding: 8px 11px;
+    border: 1px solid #dcdde3;
+    border-radius: 7px;
+    background: #fff;
+    color: #25252b;
+    font-size: 14px;
+}
+
+.campo input:focus {
+    outline: none;
+    border-color: #d86172;
+    box-shadow: 0 0 0 3px #cf203512;
+}
+
+.aviso {
+    grid-column: 1 / -1;
+    padding: 10px 12px;
+    border-left: 2px solid #d0485b;
+    background: #fff5f7;
+    color: #75545b;
+    font-size: 12px;
+}
+
+.botaoSalvar {
+    justify-self: start;
+    padding: 9px 16px;
+    border: 0;
+    border-radius: 7px;
+    background: #cf2035;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+.botaoSalvar:hover {
+    background: #b51a2e;
+}
+
+.botaoSalvar:disabled {
+    opacity: .65;
+}
+
+@media (max-width: 600px) {
+    .pagina {
+        padding-top: 12px;
+    }
+    .cabecalho h1 {
+        font-size: 24px;
+    }
+    .formulario {
+        padding: 16px;
+    }
+    .formulario fieldset {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+    .campo input, .botaoSalvar {
+        min-height: 42px;
+    }
+}

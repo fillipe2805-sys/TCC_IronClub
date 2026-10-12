@@ -1,0 +1,195 @@
+.pagina {
+    padding-top: 16px;
+    padding-bottom: 28px;
+}
+
+.cabecalho {
+    margin: 22px 0 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--iron-border);
+}
+
+.destaque {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .16em;
+    color: #b92134;
+}
+
+.cabecalho h1 {
+    margin: 0;
+    font-size: 27px;
+}
+
+.cabecalho p {
+    margin: 5px 0 0;
+    color: var(--iron-muted);
+    font-size: 13px;
+}
+
+.corpo {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 330px;
+    grid-template-rows: auto 1fr;
+    gap: 16px;
+    align-items: start;
+}
+
+.informacoes {
+    grid-column: 1;
+}
+
+.informacoes :global(.card-body) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 5px 14px;
+    padding: 16px 18px;
+}
+
+.informacoes :global(.card-body) > h3, .informacoes :global(.card-body) > p {
+    grid-column: 1;
+    margin: 0;
+}
+
+.informacoes :global(.card-body) > button {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+}
+
+.editar {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+}
+
+.editar fieldset {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 16px;
+}
+
+.editar fieldset > button {
+    justify-self: start;
+}
+
+.informacoes :global(.card-title) {
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+
+.informacoes p {
+    font-size: 13px;
+    color: var(--iron-muted);
+}
+
+.lista {
+    grid-column: 1;
+    min-width: 0;
+}
+
+.lista h3 {
+    margin: 0 0 12px;
+    font-size: 17px;
+}
+
+.lista :global(.row) {
+    --bs-gutter-x: 12px;
+    --bs-gutter-y: 12px;
+}
+
+.lista :global(.card-body) {
+    padding: 14px 16px;
+}
+
+.lista :global(h4) {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.lista :global(p) {
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.medidas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 14px;
+    margin-top: 9px;
+    padding-top: 8px;
+    border-top: 1px solid #eeeeF2;
+}
+
+.medidas p {
+    margin: 0 !important;
+    font-size: 12px;
+    color: #5d5e68;
+}
+
+.adicionar {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    position: sticky;
+    top: 16px;
+}
+
+.adicionar h3 {
+    margin-bottom: 15px;
+    font-size: 17px;
+}
+
+.adicionar :global(.col-sm-4) {
+    width: 50%;
+}
+
+.adicionar :global(.col-sm-4:last-child) {
+    width: 100%;
+}
+
+.adicionar :global(.mb-3) {
+    margin-bottom: 12px !important;
+}
+
+.adicionar :global(.card-body) {
+    padding: 18px;
+}
+
+@media (max-width: 991px) {
+    .corpo {
+        grid-template-columns: 1fr;
+    }
+    .adicionar {
+        grid-column: 1;
+        grid-row: auto;
+        position: static;
+    }
+    .adicionar :global(.col-sm-4) {
+        width: 33.333333%;
+    }
+}
+
+@media (max-width: 600px) {
+    .pagina {
+        padding-top: 12px;
+    }
+    .cabecalho h1 {
+        font-size: 24px;
+    }
+    .adicionar :global(.col-sm-4) {
+        width: 50%;
+    }
+    .adicionar :global(.col-sm-4:last-child) {
+        width: 100%;
+    }
+    .editar fieldset {
+        grid-template-columns: 1fr;
+    }
+    .informacoes :global(.card-body) {
+        display: block;
+    }
+    .informacoes :global(.card-body) > button {
+        margin-top: 10px;
+    }
+}

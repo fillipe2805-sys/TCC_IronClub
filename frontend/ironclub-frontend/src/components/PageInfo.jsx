@@ -1,8 +1,13 @@
-function PageInfo({ title }) {
+import styles from "../styles/Layout.module.css";
+
+function PageInfo({ title, descricao }) {
     return (
-        <div className="mt-3 mb-3">
-            <h2>{title}</h2>
-        </div>
+        <header className={styles.cabecalho}>
+            <div>
+                <h1>{title}</h1>
+                {descricao && <p>{descricao}</p>}
+            </div>
+        </header>
     );
 }
 

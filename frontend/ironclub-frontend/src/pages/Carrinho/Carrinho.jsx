@@ -1,3 +1,4 @@
+import styles from "../../styles/Layout.module.css";
 import { useState } from "react";
 import MenuPrincipal from "../MenuPrincipal/MenuPrincipal";
 import PageInfo from "../../components/PageInfo";
@@ -117,16 +118,16 @@ function Carrinho() {
     };
 
     return (
-        <div className="container">
+        <div className={`container ${styles.pagina}`}>
             <MenuPrincipal />
 
-            <PageInfo title="Carrinho de Compras" />
+            <PageInfo title="Carrinho de Compras" descricao="Revise os produtos antes de finalizar a compra." />
 
             {carrinho.length === 0 ? (
-                <p>Seu carrinho está vazio.</p>
+                <p className={styles.vazio}>Seu carrinho está vazio.</p>
             ) : (
-                <div>
-                    <div className="table-responsive">
+                <div className={styles.carrinho}>
+                    <div className={`table-responsive ${styles.tabela}`}>
                         <table className="table table-bordered table-striped">
                             <thead className="table-dark">
                                 <tr>
@@ -141,25 +142,27 @@ function Carrinho() {
                                 {carrinho.map((item) => (
                                     <tr key={item.idProduto}>
                                         <td>{item.nome}</td>
-                                        <td>R$ {item.preco.toFixed(2)}</td>
+                                        <td>R$ {item.preco.toFixed(2).replace(".", ",")}</td>
                                         <td>
-                                            <button
-                                                className="btn btn-secondary btn-sm me-2"
-                                                onClick={() => alterarQuantidade(item.idProduto, -1)}
-                                                disabled={item.quantidade === 1 || alterando || finalizando}
-                                            >
-                                                -
-                                            </button>
+                                            <div className={styles.quantidade}>
+                                                <button
+                                                    className="btn btn-secondary btn-sm"
+                                                    onClick={() => alterarQuantidade(item.idProduto, -1)}
+                                                    disabled={item.quantidade === 1 || alterando || finalizando}
+                                                >
+                                                    -
+                                                </button>
 
-                                            {item.quantidade}
+                                                {item.quantidade}
 
-                                            <button
-                                                className="btn btn-secondary btn-sm ms-2"
-                                                onClick={() => alterarQuantidade(item.idProduto, 1)}
-                                                disabled={alterando || finalizando}
-                                            >
-                                                +
-                                            </button>
+                                                <button
+                                                    className="btn btn-secondary btn-sm"
+                                                    onClick={() => alterarQuantidade(item.idProduto, 1)}
+                                                    disabled={alterando || finalizando}
+                                                >
+                                                    +
+                                                </button>
+                                            </div>
                                         </td>
                                         <td>
                                             <button
@@ -175,40 +178,43 @@ function Carrinho() {
                             </tbody>
                         </table>
                     </div>
-                    <p className="mt-3">
-                        <strong>Total da compra: R$ {total.toFixed(2)}</strong>
-                    </p>
-
-                    <p>Os produtos deverão ser retirados na academia.</p>
-
-                    <div className="mb-3">
-                        <label htmlFor="formaPagamento" className="form-label">
-                            Forma de pagamento
-                        </label>
-
-                        <select
-                            id="formaPagamento"
-                            className="form-select"
-                            value={formaPagamento}
-                            onChange={(e) => setFormaPagamento(e.target.value)}
-                        >
-                            <option value="PIX">PIX</option>
-                            <option value="CARTAO">Cartão</option>
-                            <option value="DINHEIRO">Dinheiro</option>
-                        </select>
-
-                        <p className="form-text">
-                            Pagamento simulado. Nenhuma cobrança será realizada.
+                    <div className={styles.resumo}>
+                        <h3>Total da compra</h3>
+                        <p className={styles.total}>
+                            <strong>R$ {total.toFixed(2).replace(".", ",")}</strong>
                         </p>
+
+                        <p>Os produtos deverão ser retirados na academia.</p>
+
+                        <div className="mb-3">
+                            <label htmlFor="formaPagamento" className="form-label">
+                                Forma de pagamento
+                            </label>
+
+                            <select
+                                id="formaPagamento"
+                                className="form-select"
+                                value={formaPagamento}
+                                onChange={(e) => setFormaPagamento(e.target.value)}
+                            >
+                                <option value="PIX">PIX</option>
+                                <option value="CARTAO">Cartão</option>
+                                <option value="DINHEIRO">Dinheiro</option>
+                            </select>
+
+                            <p className="form-text">
+                                Pagamento simulado. Nenhuma cobrança será realizada.
+                            </p>
+                        </div>
+                        <button
+                            className="btn btn-success"
+                            type="button"
+                            onClick={finalizarCompra}
+                            disabled={finalizando || alterando}
+                        >
+                            {finalizando ? "Finalizando..." : "Finalizar Compra"}
+                        </button>
                     </div>
-                    <button
-                        className="btn btn-success"
-                        type="button"
-                        onClick={finalizarCompra}
-                        disabled={finalizando || alterando}
-                    >
-                        {finalizando ? "Finalizando..." : "Finalizar Compra"}
-                    </button>
                 </div>
             )}
         </div>
