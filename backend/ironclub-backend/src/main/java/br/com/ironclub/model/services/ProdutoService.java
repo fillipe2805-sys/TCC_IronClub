@@ -70,6 +70,7 @@ public class ProdutoService {
         produto.setCategoria(dados.getCategoria());
         produto.setPreco(dados.getPreco());
         produto.setEstoque(dados.getEstoque());
+        produto.setImagemUrl(dados.getImagemUrl());
 
         return produtoRepository.save(produto);
     }

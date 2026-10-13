@@ -11,7 +11,8 @@ function NovoProduto() {
         nome: "",
         categoria: "",
         preco: "",
-        estoque: ""
+        estoque: "",
+        imagemUrl: ""
     });
 
     const navigate = useNavigate();
@@ -32,7 +33,8 @@ function NovoProduto() {
             await api.post("/produtos", {
                 ...produto,
                 preco: Number(produto.preco),
-                estoque: Number(produto.estoque)
+                estoque: Number(produto.estoque),
+                imagemUrl: produto.imagemUrl.trim() || null
             });
 
             alert("Produto cadastro com sucesso!");
@@ -100,6 +102,21 @@ function NovoProduto() {
                         className="form-control"
                         required
                     />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label" htmlFor="novoproduto-imagem">URL da imagem (opcional)</label>
+                    <input
+                        type="url"
+                        id="novoproduto-imagem"
+                        name="imagemUrl"
+                        value={produto.imagemUrl}
+                        onChange={handleChange}
+                        className="form-control"
+                        placeholder="https://exemplo.com/produto.jpg"
+                        maxLength={2048}
+                    />
+                    <p className="form-text mb-0">Use o endereço direto de uma foto do produto. Sem imagem, a Loja exibirá uma foto ilustrativa.</p>
                 </div>
 
                 <button type="submit" className="btn btn-primary w-100">

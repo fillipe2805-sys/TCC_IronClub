@@ -11,7 +11,8 @@ function EditarProduto() {
         nome: "",
         categoria: "",
         preco: "",
-        estoque: ""
+        estoque: "",
+        imagemUrl: ""
     });
 
     const { id } = useParams();
@@ -43,7 +44,8 @@ function EditarProduto() {
             await api.put(`/produtos/${id}`, {
                 ...produto,
                 preco: Number(produto.preco),
-                estoque: Number(produto.estoque)
+                estoque: Number(produto.estoque),
+                imagemUrl: (produto.imagemUrl || "").trim() || null
             });
 
             alert("Produto atualizado com sucesso!");
@@ -111,6 +113,21 @@ function EditarProduto() {
                         onChange={handleChange}
                         required
                     />
+                </div>
+
+                <div className="mb-3">
+                    <label className="form-label" htmlFor="editarproduto-imagem">URL da imagem (opcional)</label>
+                    <input
+                        type="url"
+                        id="editarproduto-imagem"
+                        name="imagemUrl"
+                        value={produto.imagemUrl || ""}
+                        onChange={handleChange}
+                        className="form-control"
+                        placeholder="https://exemplo.com/produto.jpg"
+                        maxLength={2048}
+                    />
+                    <p className="form-text mb-0">Use o endereço direto de uma foto do produto. Apague a URL para voltar à foto ilustrativa.</p>
                 </div>
 
                 <button type="submit" className="btn btn-primary w-100">

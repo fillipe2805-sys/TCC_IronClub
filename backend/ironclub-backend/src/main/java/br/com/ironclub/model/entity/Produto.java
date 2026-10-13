@@ -30,6 +30,9 @@ public class Produto {
     @Column(name = "estoque", nullable = false)
     private Integer estoque;
 
+    @Column(name = "imagem_url", length = 2048)
+    private String imagemUrl;
+
     public Integer getIdProduto() {
         return idProduto;
     }
@@ -68,5 +71,13 @@ public class Produto {
 
     public void setEstoque(Integer estoque) {
         this.estoque = estoque;
+    }
+
+    public String getImagemUrl() {
+        return imagemUrl;
+    }
+
+    public void setImagemUrl(String imagemUrl) {
+        this.imagemUrl = imagemUrl;
     }
 }

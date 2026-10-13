@@ -55,7 +55,8 @@ CREATE TABLE Produto (
 	nome VARCHAR(100) NOT NULL,
 	categoria VARCHAR(100) NOT NULL,
 	preco DECIMAL(10,2) NOT NULL,
-	estoque INT NOT NULL
+	estoque INT NOT NULL,
+	imagem_url NVARCHAR(2048) NULL
 );
 GO
 
